@@ -21,6 +21,10 @@ commitメッセージに含める名前とメールアドレス
 
 	git config --global credential.helper osxkeychain
 
+現在のブランチのみをpushする設定
+
+	git config --global push.default simple
+
 作業用ディレクトリをつくって初期化
 
 	mkdir test
