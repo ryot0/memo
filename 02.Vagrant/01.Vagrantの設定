@@ -1,0 +1,66 @@
+Vagrantの設定
+======================================
+
+1. vbguestプラグインのインストール
+--------------------------------------
+	vagrant plugin install vagrant-vbguest
+
+2. boxの追加
+--------------------------------------
+	vagrant box add centos7_0.x86_64.minimal https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box
+
+3. vagrantのテスト
+--------------------------------------
+プロジェクト用のディレクトリを準備。
+
+	mkdir vagrant-test
+
+作ったディレクトリに移動してVagrantfileを作成。
+
+	vagrant init
+
+作成されたVagrantfileの起動boxの設定を追加するため、
+13行目あたりを次の行に修正。
+
+	config.vm.box = "centos7_0.x86_64.minimal"
+
+centos7_0.x86_64.minimalは、vagrant box addでboxを追加した時につけた名前。
+
+VMの起動。
+
+	vagrant up
+
+共有ディレクトリのマウントに失敗するので、vagrant　sshでログインして/etc/init.d/vboxadd setupを実行。
+多分、vagrant vbguestでもいけるはず。
+
+4. vagrantコマンド
+--------------------------------------
+ - VMの起動
+
+		vagrant up
+
+ - sshログイン
+
+		vagrant ssh
+
+ - VMの停止
+
+		vagrant halt
+
+ - VMの一時停止
+
+		vagrant suspend
+
+ - VMの再開
+
+		vagrant resume
+
+ - VMの破棄
+
+		vagrant destroy
+
+ - 共有ディレクトリ
+
+	Vagrantfileがあるディレクトリと、ゲストOSの以下のディレクトリが共有される。
+
+		/vagrant/
